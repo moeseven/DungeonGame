@@ -6,6 +6,7 @@ public class Hero {
 	private Backpack backpack;
 	private Inventory inventory;
 	private Deck deck;
+	private Fight fight;
 	//stats
 	private int hp;
 	private int mana;
