@@ -1,7 +1,24 @@
-Warrior
--5x4D-1M
--5x3B-1M
--2x6D-2M (Bash)
--1x1H-0M
--1x20D-3M (-1B)
--1x7D-2M (Guard)
+Warrior 100HP
+-5x4D-1M /Attack
+-5x3B-1M /Block
+-2x6D-2M (Bash -1M for target) /Attack
+-1x1H-0M /Skill
+-1x20D-3M (-1B+ for this fight) /Attack
+-1x7D-2M (Guard take attacks vs target next time) /Skill
+
+Cleric 90HP
+-5x4D-1M /Attack
+-5x3B-1M /Block
+-1x6D-2M (Bash -1M for target) /Attack
+-1x-1M (+1B+ for this fight) /Skill
+-2x-1M (2H target/10D to undead) /Spell
+-1x-0M (1B to all) /Spell
+
+Mage 70HP
+-5x4D-1M /Attack
+-5x3B-1M /Block
+-2x12D-2M /Spell
+-1x6D-2M (target -3 Damage bonus) /Spell
+-1x-1M (+2M next round) /Spell
+-1x20D-4M (hits all enemies) /Spell
+
