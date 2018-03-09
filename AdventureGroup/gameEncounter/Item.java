@@ -1,22 +1,17 @@
 package gameEncounter;
 
-public class Item {
+public abstract class Item {
 	private int weight;
-	private int price;
+	private int gold;
 	private int category;
 	//1: Hand1  //2: Hand2  //3: BiHand //4: Armor
-	
-	public void mod(Hero hero) {
-		//apply modifiers granated by the item
-	}
 	public Item() {
 		super();
 	}
-	public void demod(Hero hero) {
-		//remove modifiers granted by the item
-	}
-	public String toString() {
-		return "item";
-		
-	}
+	public abstract void mod(Hero hero); //add modifiers granted by this item
+	public abstract void demod(Hero hero); //remove modifiers granted by this item
+	public abstract String toString();
+	public abstract boolean equip(Equipment e);//move from backpack to Equipment
+	public abstract boolean unequip(Equipment e); //move from Equipment to backpack (maybe not needed, inventory handles this)
+
 }

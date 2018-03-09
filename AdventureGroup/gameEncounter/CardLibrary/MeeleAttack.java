@@ -10,7 +10,7 @@ public class MeeleAttack extends Card{
 		
 	}
 	public void applyEffect(Hero self) {
-		self.dealDamage(self.getTarget(), 4);
+		self.dealAttackDamage(self.getTarget(), 20);
 	}
 	public String toString() {
 		return "meele attack";
