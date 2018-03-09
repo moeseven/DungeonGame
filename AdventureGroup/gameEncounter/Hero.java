@@ -8,7 +8,9 @@ public abstract class Hero {
 	private Backpack backpack;
 	private Equipment inventory;
 	protected int gold;
+	protected int experience;
 	protected Deck deck;
+	protected int experienceValue;
 	//game
 	private boolean isReady;
 	//Fight
@@ -94,6 +96,42 @@ public abstract class Hero {
 	
 	public Backpack getBackpack() {
 		return backpack;
+	}
+	public int getGold() {
+		return gold;
+	}
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	public int getExperience() {
+		return experience;
+	}
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	public int getExperienceValue() {
+		return experienceValue;
+	}
+	public void setExperienceValue(int experienceValue) {
+		this.experienceValue = experienceValue;
+	}
+	public boolean isReady() {
+		return isReady;
+	}
+	public void setReady(boolean isReady) {
+		this.isReady = isReady;
+	}
+	public boolean isDead() {
+		return isDead;
+	}
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
+	public int getAttackBonus() {
+		return attackBonus;
+	}
+	public void setAttackBonus(int attackBonus) {
+		this.attackBonus = attackBonus;
 	}
 	public Hero getTarget() {
 		return target;

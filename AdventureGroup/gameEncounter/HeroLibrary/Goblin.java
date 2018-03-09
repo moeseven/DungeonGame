@@ -16,9 +16,10 @@ public class Goblin extends Hero{
 		turnBlock=0;
 		turnMana=2;
 		turnDraw=3;
-		maxHp=(int) Math.random()*100;
+		maxHp=40+(int) Math.random()*50;
 		hp=maxHp;
 		gold=(int)Math.random()*5;
+		experienceValue=10;
 		//deck
 		deck=new Deck();
 		for (int i=0; i<4;i++) {

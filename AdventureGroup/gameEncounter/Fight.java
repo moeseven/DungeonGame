@@ -19,6 +19,9 @@ public class Fight {
 		}
 	}
 	public void determineBeginner() {
+		for (Hero h : heroes) {		
+			h.setTarget(monsters.get((int) Math.round(Math.random()*(monsters.size()-1))));
+		}
 		if(Math.random()<0.5) {
 			heroesTurn();
 		}else {
@@ -30,20 +33,51 @@ public class Fight {
 			h.turnBegin();
 		}	
 	}
-	public void monstersTurn() {	
+	public void monstersTurn() {
+		this.isFightOver();
 		for (Hero m: monsters) {
-			m.turnBegin();
-			m.setTarget(heroes.get((int) Math.round(Math.random()*(heroes.size()-1))));//choose target for attacks
-		    m.turnBegin();//draw cards and reset buffs/debuffs
-		    for(int i=0; i<m.getHand().size(); i++){
-		    	if(m.getHand().get(i).playCard(m)) {
-		    		i=i-1;
-		    	}
-		    }
+			if(m.isDead()) {
+				//don't participate in fight
+			}else {
+				m.turnBegin();
+				m.setTarget(heroes.get((int) Math.round(Math.random()*(heroes.size()-1))));//choose target for attacks
+			    m.turnBegin();//draw cards and reset buffs/debuffs
+			    for(int i=0; i<m.getHand().size(); i++){
+			    	if(m.getHand().get(i).playCard(m)) {
+			    		i=i-1;
+			    	}
+			    }
+			}			
 		}	
-		heroesTurn();
+		if (this.isFightOver()) {
+			int exp=0; //give experience to heroes
+			for (Hero m: monsters) {
+				exp+=m.getExperienceValue();
+			}
+			exp=(int) (exp/heroes.size());
+			for (Hero h: heroes) {
+				h.setExperience(h.getExperience()+exp);
+			}
+			//handle monster loot here
+			
+		}else {
+			heroesTurn();
+		}
 	}
-	public void createMeele() {//give heroes a foe not good like this!
+	public boolean isFightOver() {
+		int alive=0;
+		for (Hero m: monsters) {
+			if(!m.isDead()){
+				alive+=1;
+			}
+		}
+		if(alive>0) {
+			return false;
+		}else {
+			return true;
+		}		
+	}
+	public void createMeele() {//give heroes a foe not good like this! Rework!!!
 		if(monsters.size()>=heroes.size()) {
 			for (int i=0; i<heroes.size();i++) {
 				LinkedList<Hero> newList =new LinkedList<Hero>();
