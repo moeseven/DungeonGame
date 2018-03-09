@@ -6,11 +6,15 @@ import java.util.LinkedList;
 public abstract class Hero {
 
 	private Backpack backpack;
-	private Inventory inventory;
+	private Equipment inventory;
+	protected int gold;
 	protected Deck deck;
+	//game
+	private boolean isReady;
 	//Fight
 	private Fight fight;
 	private Hero target;
+	private boolean isDead;
 	//stats
 	protected int hp;
 	private int mana;
@@ -22,16 +26,20 @@ public abstract class Hero {
 	protected int turnMana;
 	public int turnBlock;
 	private int blockBonus;
-	private int damageBonus;
+	private int attackBonus;
 	protected int maxHp;
 	public Hero(){
+		this.initialize();
+	}
+	public void initialize() {
+		isReady=false;
 		backpack= new Backpack();
-		inventory= new Inventory();
-		
+		inventory= new Equipment();
 	}
 	//functions
-	public void setUpDrawPile() {
-		//should be shuffled here
+	public void setUpHandPile() {
+		//shuffle + new hand
+		this.hand=new LinkedList<Card>();
 		this.setDrawPile(new LinkedList<Card>());
 		for(Card c: this.getDeck().getCards()) {
 	    	this.getDrawPile().add(c);
@@ -39,19 +47,22 @@ public abstract class Hero {
 		Collections.shuffle(this.getDrawPile());
 	}
 	public void turnBegin(){
+		this.discardHand();
 		this.block=turnBlock;
 		this.mana=turnMana;
-		int count=this.hand.size();
-		for(int i=0; i<count;i++) {
-			drawPile.add(hand.removeFirst());//put hand on the bottem of draw pile
-		}
 		for(int i=0; i<turnDraw;i++) {
 			this.hand.add(drawPile.removeFirst());
 		}
 		
 	}
+	public void blockWithBonus(int block) {
+		this.block+=block+this.blockBonus;
+	}
 	public void block(int block) {
 		this.block+=block;
+	}
+	public void dealAttackDamage(Hero hero, int damage) {
+		hero.takeDamage(hero, damage+this.attackBonus);
 	}
 	public void dealDamage(Hero hero,int damage) {
 		hero.takeDamage(hero,damage);
@@ -69,6 +80,15 @@ public abstract class Hero {
 	}
 	public void die() {
 		//handle death //toughness rolls/receiving wounds?
+		this.isDead=true;
+	}
+	public void loot(Hero looter) {
+		//this is the loot table of this monster
+	}
+	public void discardHand() {
+		while(hand.size()>0) {
+			drawPile.add(hand.removeFirst());
+		}		
 	}
 	//getters and setters
 	
@@ -84,10 +104,10 @@ public abstract class Hero {
 	public void setBackpack(Backpack backpack) {
 		this.backpack = backpack;
 	}
-	public Inventory getInventory() {
+	public Equipment getInventory() {
 		return inventory;
 	}
-	public void setInventory(Inventory inventory) {
+	public void setInventory(Equipment inventory) {
 		this.inventory = inventory;
 	}
 	public Deck getDeck() {
@@ -139,10 +159,10 @@ public abstract class Hero {
 		this.blockBonus = blockBonus;
 	}
 	public int getDamageBonus() {
-		return damageBonus;
+		return attackBonus;
 	}
 	public void setDamageBonus(int damageBonus) {
-		this.damageBonus = damageBonus;
+		this.attackBonus = damageBonus;
 	}
 	public int getMaxHp() {
 		return maxHp;

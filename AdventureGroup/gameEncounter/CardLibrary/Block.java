@@ -10,10 +10,10 @@ public class Block extends Card{
 		
 	}
 	public void applyEffect(Hero self) {
-		self.block(3);
+		self.blockWithBonus(15);
 	}
 	public String toString() {
-		return "block";
+		return "parry";
 		
 	}
 }
