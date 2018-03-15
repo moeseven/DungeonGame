@@ -4,7 +4,7 @@ import gameEncounter.Equipment;
 import gameEncounter.Hero;
 import gameEncounter.Item;
 
-public class ArmorThinLeather extends Item{
+public class ArmorThinLeather extends Armor{
 
 	@Override
 	public void mod(Hero hero) {
@@ -19,18 +19,6 @@ public class ArmorThinLeather extends Item{
 	@Override
 	public String toString() {
 		return "Thin Leather";
-	}
-
-	@Override
-	public boolean equip(Equipment e) {
-		e.equipArmor(this);
-		return false;
-	}
-
-	@Override
-	public boolean unequip(Equipment e) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
