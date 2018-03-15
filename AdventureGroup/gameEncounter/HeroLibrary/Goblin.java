@@ -19,6 +19,7 @@ public class Goblin extends Hero{
 		maxHp=40+(int) Math.random()*50;
 		hp=maxHp;
 		gold=(int)Math.random()*5;
+		name="Goblin";
 		experienceValue=10;
 		//deck
 		deck=new Deck();

@@ -19,6 +19,7 @@ public class Warrior extends Hero{
 		maxHp=500;
 		hp=maxHp;
 		gold=100;
+		name="Warrior";
 		//deck
 		deck=new Deck();
 		for (int i=0; i<5;i++) {

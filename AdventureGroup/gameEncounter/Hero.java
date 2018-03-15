@@ -7,6 +7,7 @@ public abstract class Hero {
 
 	private Backpack backpack;
 	private Equipment inventory;
+	protected String name;
 	protected int gold;
 	protected int experience;
 	protected Deck deck;
@@ -16,6 +17,7 @@ public abstract class Hero {
 	//Fight
 	private Fight fight;
 	private Hero target;
+	private Card selectedCard;
 	private boolean isDead;
 	//stats
 	protected int hp;
@@ -34,6 +36,7 @@ public abstract class Hero {
 		this.initialize();
 	}
 	public void initialize() {
+		isDead=false;
 		isReady=false;
 		backpack= new Backpack();
 		inventory= new Equipment();
@@ -54,8 +57,7 @@ public abstract class Hero {
 		this.mana=turnMana;
 		for(int i=0; i<turnDraw;i++) {
 			this.hand.add(drawPile.removeFirst());
-		}
-		
+		}	
 	}
 	public void blockWithBonus(int block) {
 		this.block+=block+this.blockBonus;
@@ -225,6 +227,18 @@ public abstract class Hero {
 	}
 	public void setHand(LinkedList<Card> hand) {
 		this.hand = hand;
+	}
+	public Card getSelectedCard() {
+		return selectedCard;
+	}
+	public void setSelectedCard(Card selectedCard) {
+		this.selectedCard = selectedCard;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

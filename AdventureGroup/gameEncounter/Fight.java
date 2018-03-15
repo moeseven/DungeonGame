@@ -6,17 +6,18 @@ public class Fight {
 	private LinkedList<Hero> monsters;
 	private LinkedList<Hero> heroes;
 	private LinkedList<LinkedList<Hero>> meele;
-	public Fight(LinkedList<Hero> attackers, LinkedList<Hero> defenders) {
+	public Fight(LinkedList<Hero> monsters, LinkedList<Hero> heroes) {
 		// TODO Auto-generated constructor stub
-		attackers=this.monsters;
-		defenders=this.heroes;
-		for (Hero h : heroes) {		
+		this.monsters=monsters;
+		this.heroes=heroes;
+		for (Hero h : this.heroes) {		
 		    h.setUpHandPile();
 		}
-		for (Hero m : monsters) {	
+		for (Hero m : this.monsters) {	
 		    m.setUpHandPile();
 		    m.turnBegin();		  
 		}
+		this.determineBeginner();
 	}
 	public void determineBeginner() {
 		for (Hero h : heroes) {		
@@ -99,4 +100,18 @@ public class Fight {
 			}
 		}
 	}
+	//getters and setters
+	public LinkedList<Hero> getMonsters() {
+		return monsters;
+	}
+	public void setMonsters(LinkedList<Hero> monsters) {
+		this.monsters = monsters;
+	}
+	public LinkedList<Hero> getHeroes() {
+		return heroes;
+	}
+	public void setHeroes(LinkedList<Hero> heroes) {
+		this.heroes = heroes;
+	}
+	
 }

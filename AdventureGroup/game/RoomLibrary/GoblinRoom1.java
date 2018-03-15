@@ -19,7 +19,7 @@ public class GoblinRoom1 extends Room{
 		LinkedList<Hero> foes=new LinkedList<Hero>();
 		foes.add(new Goblin());
 		foes.add(new Goblin());
-		this.fight= new Fight(heroes, foes);
+		this.fight= new Fight(foes, heroes);
 		
 	}
 	

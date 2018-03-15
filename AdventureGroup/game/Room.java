@@ -18,4 +18,10 @@ public abstract class Room {
 	}
 	public abstract void enterRoom();
 	//here the room is set up//food consumption//torch level
+	
+	public Fight getFight() {
+		if(hasFight) {
+			return fight;
+		}else {return null;}
+	}
 }
