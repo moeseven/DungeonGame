@@ -57,7 +57,7 @@ public class MonsterComponent extends JComponent{
 			}
 		}
 		g.setColor(Color.black);
-		g.drawString(monster.getName(), 10, 10);
-		g.drawString(""+monster.getHp(), 10, 40);
+		g.drawString(monster.getName(), 10, 15);
+		g.drawString(""+monster.getHp(), 10, 45);
 	}
 }
