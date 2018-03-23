@@ -14,8 +14,7 @@ public class Fight {
 		    h.setUpHandPile();
 		}
 		for (Hero m : this.monsters) {	
-		    m.setUpHandPile();
-		    m.turnBegin();		  
+		    m.setUpHandPile();	  
 		}
 		this.determineBeginner();
 	}
@@ -40,9 +39,8 @@ public class Fight {
 			if(m.isDead()) {
 				//don't participate in fight
 			}else {
-				m.turnBegin();
+				m.turnBegin();//draw cards and reset buffs/debuffs
 				m.setTarget(heroes.get((int) Math.round(Math.random()*(heroes.size()-1))));//choose target for attacks
-			    m.turnBegin();//draw cards and reset buffs/debuffs
 			    for(int i=0; i<m.getHand().size(); i++){
 			    	if(m.getHand().get(i).playCard(m)) {
 			    		i=i-1;

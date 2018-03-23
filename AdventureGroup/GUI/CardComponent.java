@@ -26,9 +26,10 @@ public class CardComponent extends JComponent{
 //		}
 		this.gf=gf;
 		this.card=card;
-		super.setPreferredSize(new Dimension(100,100));
+		super.setPreferredSize(new Dimension(100,80));
 		MyMouseListener ml = new MyMouseListener();
 		super.addMouseListener(ml);
+		setLayout(new BorderLayout());
 		setVisible(true);
 	}
 
@@ -54,7 +55,7 @@ public class CardComponent extends JComponent{
 			}
 		}
 		g.setColor(Color.black);
-		g.drawString(card.getName(), 20, 10);
+		g.drawString(card.getName(), 20, 15);
 		g.drawString(""+card.getManaCost(), 5, 5);
 	}
 }
