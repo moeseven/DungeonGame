@@ -16,7 +16,8 @@ public class GameWindow extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		if(this.game.getRoom().getFight()!=null) {
-			add(new GuiFight(this),BorderLayout.CENTER);
+			guiFight=new GuiFight(this);
+			add(guiFight,BorderLayout.CENTER);
 		}
 		setLocation(10, 10);
 		
@@ -27,5 +28,7 @@ public class GameWindow extends JFrame{
 	public void setGame(Game game) {
 		this.game = game;
 	}
-	
+	public void updateHand() {
+		guiFight.getHc().setHandComponent(new HandComponent(this,game.getHeroes().getFirst()));
+	}
 }

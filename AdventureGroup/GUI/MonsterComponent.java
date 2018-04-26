@@ -39,7 +39,9 @@ public class MonsterComponent extends JComponent{
 			if(e.getButton()==1){
 				gf.getGame().getPlayer().getSelectedHero().setTarget(monster);
 				gf.getGame().getPlayer().getSelectedHero().getSelectedCard().playCard(gf.getGame().getPlayer().getSelectedHero());
+				gf.revalidate();
 				gf.repaint();
+				gf.updateHand();
 			}else{
 				if (e.getButton()==3){
 					//new CardView(card);
@@ -58,6 +60,9 @@ public class MonsterComponent extends JComponent{
 		}
 		g.setColor(Color.black);
 		g.drawString(monster.getName(), 10, 15);
-		g.drawString(""+monster.getHp(), 10, 45);
+		g.setColor(Color.blue);
+		g.drawString(""+monster.getBlock(), 10, 45);
+		g.setColor(Color.red);
+		g.drawString(""+monster.getHp(), 10, 65);
 	}
 }

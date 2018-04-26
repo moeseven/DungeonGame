@@ -17,6 +17,8 @@ import gameEncounter.Fight;
 public class GuiFight extends JPanel{
 	private Fight fight;
 	private GameWindow gf;
+	private HeroComponent hc;
+	private MonstersComponent mc;
 	private JButton b;
 	private JPanel jp_east;
 	private JPanel jpp;
@@ -36,21 +38,41 @@ public class GuiFight extends JPanel{
 //			// Player dialog
 //			tf= new CommandLine(gf,player);//new JTextField(player.getMessage());
 //			//
-			jp_mid_1= new JPanel();
-			jp_mid_1.setLayout(new BorderLayout());
-			jp_mid_1.add(new MonstersComponent(this.gf),BorderLayout.NORTH);
-			jp_mid_1.add(new HandComponent(this.gf),BorderLayout.CENTER);
-			this.add(jp_mid_1,BorderLayout.CENTER);
-			b=new JButton("done");
-			b.addMouseListener(new ml());
-			this.add(b,BorderLayout.SOUTH);
+			myUpdate();
 			setVisible(true);
 		}		
 	}
 	private class ml extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
 			gf.getGame().getRoom().getFight().monstersTurn();
-			
+			gf.revalidate();
+			gf.repaint();
 		}
 	}
+	public void myUpdate() {
+		// TODO Auto-generated method stub
+		hc=new HeroComponent(this.gf, this.gf.getGame().getHeroes().getFirst());
+		mc=new MonstersComponent(this.gf);
+		jp_mid_1= new JPanel();
+		jp_mid_1.setLayout(new BorderLayout());
+		jp_mid_1.add(mc,BorderLayout.NORTH);
+		jp_mid_1.add(hc,BorderLayout.CENTER);
+		this.add(jp_mid_1,BorderLayout.CENTER);
+		b=new JButton("done");
+		b.addMouseListener(new ml());
+		this.add(b,BorderLayout.SOUTH);
+	}
+	public HeroComponent getHc() {
+		return hc;
+	}
+	public void setHc(HeroComponent hc) {
+		this.hc = hc;
+	}
+	public MonstersComponent getMc() {
+		return mc;
+	}
+	public void setMc(MonstersComponent mc) {
+		this.mc = mc;
+	}
+	
 }

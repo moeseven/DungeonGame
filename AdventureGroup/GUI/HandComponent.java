@@ -11,24 +11,30 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import gameEncounter.Card;
+import gameEncounter.Hero;
 
 public class HandComponent extends JComponent{
-//	private LinkedList<Card> hand;
-	private JPanel jp;
-	private JScrollPane sp;
-	private GameWindow gf;
-	public HandComponent(GameWindow gf){
-		this.gf=gf;
-		setBorder(new LineBorder(Color.YELLOW));		
-		//hand= this.gf.getGame().getPlayer().getSelectedHero().getHand();
-		jp=new JPanel();
-		jp.setLayout(new GridLayout());
-		for (int i=0;i<this.gf.getGame().getPlayer().getSelectedHero().getHand().size();i++){
-			jp.add(new CardComponent(this.gf,this.gf.getGame().getPlayer().getSelectedHero().getHand().get(i)));
+		private Hero hero;
+		private JPanel jp;
+		private JScrollPane sp;
+		private GameWindow gf;
+		public HandComponent(GameWindow gf,Hero hero){
+			this.gf=gf;
+			this.hero=hero;
+			setBorder(new LineBorder(Color.YELLOW));
+			setLayout(new GridLayout());
+			jp=new JPanel();
+			for (int i=0;i<hero.getHand().size();i++){
+				jp.add(new CardComponent(gf,hero.getHand().get(i)));
+			}
+			sp= new JScrollPane(jp);
+			add(sp,BorderLayout.CENTER);
 		}
-		sp= new JScrollPane(jp);
-		add(sp);
-		this.setVisible(true);
-	}
+		public void myUpdate() {
+			jp=new JPanel();
+			for (int i=0;i<hero.getHand().size();i++){
+				jp.add(new CardComponent(gf,hero.getHand().get(i)));
+			}
+		}
 }
 

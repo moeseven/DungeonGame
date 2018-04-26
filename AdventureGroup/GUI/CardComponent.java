@@ -51,11 +51,11 @@ public class CardComponent extends JComponent{
 		if(gf!=null){			
 			if(gf.getGame().getPlayer().getSelectedHero().getSelectedCard()==card){
 				g.setColor(Color.red);
-				g.drawRect(1, 1, 98, 148);
+				g.drawRect(1, 1, 100, 80);
 			}
 		}
 		g.setColor(Color.black);
 		g.drawString(card.getName(), 20, 15);
-		g.drawString(""+card.getManaCost(), 5, 5);
+		g.drawString(""+card.getManaCost(), 5, 10);
 	}
 }

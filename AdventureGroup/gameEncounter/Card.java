@@ -8,7 +8,7 @@ public abstract class Card {
 		// TODO Auto-generated constructor stub
 	}
 	public boolean playCard(Hero self){
-		if(self.getMana()>manaCost) {
+		if(self.getMana()>=manaCost&&self.getHand().contains(this)) {
 			self.setMana(self.getMana()-manaCost);
 			this.applyEffect(self);
 			self.getHand().remove(this);
