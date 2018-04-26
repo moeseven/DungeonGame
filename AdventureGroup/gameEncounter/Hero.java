@@ -72,12 +72,14 @@ public abstract class Hero {
 		hero.takeDamage(hero,damage);
 	}
 	public void takeDamage(Hero hero,int damage) {
-		this.setBlock(block-damage);
-		this.setHp(hp+block);
-		if(block<0) {
+		int hpDamage=block-damage;
+		if(hpDamage<0) {
+			this.setHp(hp+hpDamage);
 			block=0;
+		}else {
+			this.setBlock(block-damage);
 		}
-		if(hp<0) {
+		if(hp<=0) {
 			hp=0;
 			this.die();
 		}
